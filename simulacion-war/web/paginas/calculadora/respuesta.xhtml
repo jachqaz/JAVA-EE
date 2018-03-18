@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Respuesta</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="./../../newTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <div><p:outputLabel style="font-family: cursive;font-size: 20px">La #{datos.operacion} de #{datos.n1} y #{datos.n2} es = 
+                            #{calculadora.Respuesta(datos.n1, datos.n2, datos.operacion)}</p:outputLabel></div>
+                    <h:commandButton id="back" value="Regresar" action="index" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

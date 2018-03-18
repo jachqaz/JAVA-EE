@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CALCULADORA</title>
+    </h:head>
+
+    <h:body >
+        <ui:composition template="./../../newTemplate.xhtml">
+            <ui:define name="content">
+                <h1 style="font-weight: bold">Calculadora</h1>
+                <h:form >
+                    <h:graphicImage url="https://es.calcuworld.com/wp-content/uploads/sites/2/2013/02/matematicas.png"></h:graphicImage>
+                    <br></br>
+                    <p:outputLabel style="font-family: cursive">Numero 1 </p:outputLabel>
+                    <h:inputText id="N1"
+                                 title="Numero 1"
+                                 value="#{datos.n1}"
+                                 required="true"
+                                 requiredMessage="Error: Numero 1 es requerido."
+                                 maxlength="10" /> 
+                    <p></p>
+                    <p:outputLabel style="font-family: cursive">Numero 2 </p:outputLabel>
+                    <h:inputText id="N2"
+                                 value="#{datos.n2}"
+                                 title="Numero 2"
+                                 required="true"
+                                 requiredMessage="Error: Numero 2 es requerido."
+                                 maxlength="10" />
+                    <p></p>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:selectOneRadio id="console" value="#{datos.operacion}">
+                            <f:selectItem itemLabel="Suma" itemValue="Suma" />
+                            <f:selectItem itemLabel="Resta" itemValue="Resta" />
+                            <f:selectItem itemLabel="Multiplicacion" itemValue="Multiplicacion" />
+                            <f:selectItem itemLabel="Division" itemValue="Division" />
+                        </p:selectOneRadio>
+
+                    </h:panelGrid>
+                    <h:commandButton id="submit" value="Enviar" actionListener="#{datos.calcular()}">
+                        <f:ajax execute="N1 N2" render="resultado"/>
+                    </h:commandButton>
+                    <h:outputText id="resultado" value="#{datos.resultado}"/>
+                </h:form>
+                <div class="messagecolor">
+                    <h:messages showSummary="true" 
+                                showDetail="false"
+                                errorStyle="color: #d20005" 
+                                infoStyle="color: blue"/>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

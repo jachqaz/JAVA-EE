@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <h:form id="AjaxGuess">
+            <h2>
+                Hola soy Gohan. Estoy pensando en un numero del #{gohanNumberBean.minimun}
+                al #{gohanNumberBean.maximun}, puedes adivinarlo?
+            </h2>
+            <h:inputText id="userNo"
+                         title="Digite un numero del 0 al 10:"
+                         value="#{userNumberBean.userNumberBean}">
+                <f:validateLongRange minimum="#{gohanNumberBean.minimun}"
+                                     maximum="#{gohanNumberBean.maximun}"/>
+            </h:inputText>
+            <h:commandButton id="submit" value="Enviar" >
+                <br/>
+                <c:if test="#{adivinar.adivino(userNumberBean.userNumberBean, gohanNumberBean.randomInt)}"> #{adivinar.mensaje()}</c:if>
+                    </h:commandButton>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

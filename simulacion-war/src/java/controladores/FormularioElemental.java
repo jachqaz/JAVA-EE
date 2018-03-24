@@ -12,12 +12,10 @@ import java.io.Serializable;
  *
  * @author Rodolhan
  */
-@Named("");
-@LocalBean
+
 public class FormularioElemental implements Serializable {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-cars=service.createcars(3);
 
 }

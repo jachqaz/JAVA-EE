@@ -53,6 +53,23 @@
                                 errorStyle="color: #d20005" 
                                 infoStyle="color: blue"/>
                 </div>
+                <h:form>
+                   <p:outputLabel for="advanced" value="Advanced:"  />
+                        <p:selectOneMenu id="advanced" value="#{form.car}"  
+                                         var="t" panelStyle="width:180px" style="width: 160px">
+                            <f:selectItems value="#{form.cars}" var="carro" 
+                                           itemLabel="#{carro.brand}" itemValue="#{carro}" />
+
+                            <p:column style="width:10%">
+                                <h:outputText value="#{t.id}"  />
+                            </p:column>
+
+                            <p:column>
+                                <h:outputText value="#{t.brand}" />
+                            </p:column>
+                        </p:selectOneMenu> 
+                </h:form>
+                
             </ui:define>
         </ui:composition>
     </h:body>

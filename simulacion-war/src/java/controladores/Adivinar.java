@@ -16,7 +16,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class Adivinar {
 
-     boolean acceso=false;
+    boolean acceso = false;
 
     /**
      * Creates a new instance of Adivinar
@@ -28,15 +28,15 @@ public class Adivinar {
         if (N1 == N2) {
             acceso = true;
             return true;
-        } 
+        }
         return false;
     }
 
     public String mensaje() {
-        if (acceso==true) {
-            acceso=false;
+        if (acceso == true) {
+            acceso = false;
             return "ADIVINO";
-        }
+        } 
         return "";
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>CALCULADORA</title>
+    </h:head>
+
+    <h:body >
+        <ui:composition template="./../../newTemplate.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup><p:selectOneMenu id="console" value="#{form.console}" 
+                                                   style="width: 125px">
+                            <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One"/>
+                            <f:selectItem itemLabel="Ps4" itemValue="Ps4"/>
+                            <f:selectItem itemLabel="Wii U" itemValue="Wii U"/>
+                        </p:selectOneMenu>
+                        <h:outputText value="Hardcoded value in 'f:selectitem' tag."/>
+                </h:panelGroup>
+                    <p:outputLabel for="basicMultiple" value="Basic Multi"/>
+                    <p:selectManyMenu id="basicMultiple" value="#{form.diasSeleccionados}">
+                        <f:selectItem itemLabel="lunes" itemValue="lunes"/>
+                        <f:selectItem itemLabel="martes" itemValue="martes"/>
+                        <f:selectItem itemLabel="miercoles" itemValue="miercoles"/>
+                        <f:selectItem itemLabel="jueves" itemValue="jueves"/>
+                        <f:selectItem itemLabel="viernes" itemValue="viernes"/>
+                        <f:selectItem itemLabel="sabado" itemValue="sabado"/>
+                        <f:selectItem itemLabel="domingo" itemValue="domingo"/>
+                        </p:selectManyMenu>
+                    <p:selectOneMenu id="combo1" value="#{form.option}">
+                        <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                    <f:selectItems value="#{form.options}"/>
+                    <f:ajax event="change" render="resultado"/>
+                    </p:selectOneMenu>
+                    <p></p>
+                    <h:outputText id="resultado" value="opcion escogida: #{form.option}" />
+                    <h:panelGroup>
+                        <p:selectOneMenu id="ciudades" value="#{form.city}">
+                            <f:selectItem itemLabel="seleccionar" itemValue=""/>
+                            <f:selectItems value="#{form.cities}"/>
+                            
+                    </p:selectOneMenu>
+                        <P></P>
+                        <h:outputText value="Generate values with a map new hashmap () And put it into 'f:selectitems' tag."/>
+                    </h:panelGroup>
+                    <p></p>
+                    <p:outputLabel for="advanced" value="Advanced:"  />
+                        <p:selectOneMenu id="advanced" converter="CarConverter" value="#{form.car}"  
+                                          var="t" style="width:160px" >
+                            <f:selectItems value="#{form.cars}" var="carro" 
+                                           itemLabel="#{carro.brand}" itemValue="#{carro}" />
+
+                            <p:column style="width:10%">
+                                <h:outputText value="#{t.id}"  />
+                            </p:column>
+
+                            <p:column>
+                                <h:outputText value="#{t.brand}" />
+                            </p:column>
+                        </p:selectOneMenu>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

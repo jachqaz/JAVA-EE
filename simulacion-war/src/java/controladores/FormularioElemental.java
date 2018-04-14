@@ -8,30 +8,31 @@ package controladores;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import modelo.Binomial;
 import modelo.Car;
 import modelo.Carro;
+import sessionBean.BinomailService;
 import sessionBean.CarService;
-
 
 /**
  *
  * @author Rodolhan
  */
-
 @Named("form")
 @SessionScoped
 public class FormularioElemental implements Serializable {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-     @Inject
-    private CarService service;
+    @Inject
+    private CarService carservice;
     private Car car;
     private List<Car> cars;
     private List<Carro> mylistaCarros;
@@ -42,7 +43,7 @@ public class FormularioElemental implements Serializable {
     private List<String> options;
     private String option;
     private String city;
-    private Map<String,String>cities;
+    private Map<String, String> cities;
 
     @PostConstruct
     public void construct() {
@@ -64,24 +65,26 @@ public class FormularioElemental implements Serializable {
     public void setDiasSeleccionados(List<String> diasSeleccionados) {
         this.diasSeleccionados = diasSeleccionados;
     }
-    
+
     private void init() {
-        options=new ArrayList<>();
-        for(int i=0;i<20;i++){
-            options.add("Option "+i);
+        options = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            options.add("Option " + i);
         }
-        cities=new LinkedHashMap<>();
-        cities.put("Cali","Cali");
-        cities.put("Palmira","Palmira");
-        cars = service.createCars(10);
+        cities = new LinkedHashMap<>();
+        cities.put("Cali", "Cali");
+        cities.put("Palmira", "Palmira");
+        cars = carservice.createCars(10);
         
+
     }
+
     public CarService getService() {
-        return service;
+        return carservice;
     }
 
     public void setService(CarService service) {
-        this.service = service;
+        this.carservice = service;
     }
 
     public Car getCar() {
@@ -155,5 +158,7 @@ public class FormularioElemental implements Serializable {
     public void setCities(Map<String, String> cities) {
         this.cities = cities;
     }
+
+    
 
 }

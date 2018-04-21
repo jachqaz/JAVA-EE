@@ -14,6 +14,8 @@ import javax.inject.Named;
 import modelo.Distribucion;
 import sessionBean.DBinomailService;
 import sessionBean.DContinuaService;
+import sessionBean.DNormalService;
+import sessionBean.DPoisssonService;
 
 /**
  *
@@ -29,13 +31,21 @@ public class FormularioDistribuciones implements Serializable {
     private DBinomailService binomailService;
     @Inject
     private DContinuaService continuaService;
+    @Inject
+    private DNormalService normalService;
+    @Inject
+    private DPoisssonService poisssonService;
     private Distribucion distribucion;
     private List<Distribucion> listbinomial;
     private List<Distribucion> listcontiua;
+    private List<Distribucion> listnorm;
+    private List<Distribucion> listpoisson;
     private double n;
     private double p;
     private int liminf;
     private int limsup;
+    private double promedio;
+    private double desvest;
 
     public void FormularioDistribuciones() {
 
@@ -49,12 +59,20 @@ public class FormularioDistribuciones implements Serializable {
         listbinomial = binomailService.Distribucion(n, p);
     }
 
-    public List<Distribucion> getListbinomial() {
-        return listbinomial;
-    }
-
     public void continua() {
         listcontiua = continuaService.Distribucion(liminf, limsup);
+    }
+
+    public void normal() {
+        listnorm = normalService.Distribucion(promedio, desvest);
+    }
+
+    public void poisson() {
+        listpoisson = poisssonService.Distribucion(promedio);
+    }
+
+    public List<Distribucion> getListbinomial() {
+        return listbinomial;
     }
 
     public void setListbinomial(List<Distribucion> listbinomial) {
@@ -75,6 +93,22 @@ public class FormularioDistribuciones implements Serializable {
 
     public void setListcontiua(List<Distribucion> listcontiua) {
         this.listcontiua = listcontiua;
+    }
+
+    public List<Distribucion> getListnorm() {
+        return listnorm;
+    }
+
+    public void setListnorm(List<Distribucion> listnorm) {
+        this.listnorm = listnorm;
+    }
+
+    public List<Distribucion> getListpoisson() {
+        return listpoisson;
+    }
+
+    public void setListpoisson(List<Distribucion> listpoisson) {
+        this.listpoisson = listpoisson;
     }
 
     public int getLiminf() {
@@ -107,6 +141,22 @@ public class FormularioDistribuciones implements Serializable {
 
     public void setP(double p) {
         this.p = p;
+    }
+
+    public double getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(double promedio) {
+        this.promedio = promedio;
+    }
+
+    public double getDesvest() {
+        return desvest;
+    }
+
+    public void setDesvest(double desvest) {
+        this.desvest = desvest;
     }
 
 }

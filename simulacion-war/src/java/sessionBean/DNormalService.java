@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import modelo.Distribucion;
 import org.apache.commons.math3.distribution.BinomialDistribution;
+import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
  *
@@ -31,12 +32,12 @@ public class DNormalService implements Serializable {
     public DNormalService() {
     }
 
-    public List<Distribucion> Distribucion(double n, double p) {
+    public List<Distribucion> Distribucion(double promedio, double desvest) {
         List<Distribucion> list=new ArrayList<>();
-        BinomialDistribution bd=new BinomialDistribution((int) n,p);
+        NormalDistribution nd = new NormalDistribution(promedio, desvest);
         DecimalFormat df = new DecimalFormat("0.000000");
-        for (int X = 0; X <= n; X++) {
-            list.add(new Distribucion(X+"", df.format(bd.probability(X)), df.format(bd.cumulativeProbability(X))));
+        for (int X = 0; X <= promedio; X++) {
+            list.add(new Distribucion(X+"", df.format(nd.probability(X)), df.format(nd.cumulativeProbability(X))));
         }   
         return list;
     }

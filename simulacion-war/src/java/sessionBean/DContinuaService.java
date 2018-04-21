@@ -34,7 +34,7 @@ public class DContinuaService implements Serializable {
     public List<Distribucion> Distribucion(int LimF, int LimS) {
         List<Distribucion> list=new ArrayList<>();
         UniformRealDistribution uid=new UniformRealDistribution(LimF, LimS);
-            DecimalFormat df = new DecimalFormat("0.0000");
+            DecimalFormat df = new DecimalFormat("0.000000");
             do {
                 list.add(new Distribucion(LimF+"", df.format(uid.density(LimF)), df.format(uid.cumulativeProbability(LimF))));
                 LimF++;

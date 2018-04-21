@@ -7,9 +7,7 @@
                 <p:outputLabel style="font-family: cursive">Limite Superior</p:outputLabel>
                 <h:inputText id="N1" title="Numero 1" value="#{formD.limsup}" required="true" requiredMessage="Error: Numero 1 es requerido." maxlength="10"/>
                 <p:outputLabel style="font-family: cursive">Limite Inferior</p:outputLabel>
-                <h:inputText id="N2" value="#{formD.liminf}" title="Numero 2" required="true" requiredMessage="Error: Numero 2 es requerido." maxlength="10">
-                    <f:validateLongRange minimum="0" maximum="1"/>
-                </h:inputText>
+                <h:inputText id="N2" value="#{formD.liminf}" title="Numero 2" required="true" requiredMessage="Error: Numero 2 es requerido." maxlength="10"/>
             </h:panelGrid>
             <h:commandButton id="submit" value="Enviar" actionListener="#{formD.continua()}">
                 <f:ajax execute="@this N1 N2" render="resultado errors1" onevent="msg"/>

@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import modelo.Distribucion;
 import org.apache.commons.math3.distribution.BinomialDistribution;
+import org.apache.commons.math3.distribution.PoissonDistribution;
 
 /**
  *
@@ -31,13 +32,17 @@ public class DPoisssonService implements Serializable {
     public DPoisssonService() {
     }
 
-    public List<Distribucion> Distribucion(double n, double p) {
+    public List<Distribucion> Distribucion(double Promedio) {
         List<Distribucion> list=new ArrayList<>();
-        BinomialDistribution bd=new BinomialDistribution((int) n,p);
         DecimalFormat df = new DecimalFormat("0.000000");
-        for (int X = 0; X <= n; X++) {
-            list.add(new Distribucion(X+"", df.format(bd.probability(X)), df.format(bd.cumulativeProbability(X))));
-        }   
+                PoissonDistribution pd=new PoissonDistribution(Promedio);
+                String aux="";
+                int X = 0;
+                do {
+                    list.add(new Distribucion(X+"", df.format(pd.probability(X)), df.format(pd.cumulativeProbability(X))));
+                    aux = df.format(pd.cumulativeProbability(X));
+                    X++;
+                } while (!aux.contains("1,"));  
         return list;
     }
 

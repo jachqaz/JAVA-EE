@@ -46,6 +46,7 @@ public class FormularioDistribuciones implements Serializable {
     private int limsup;
     private double promedio;
     private double desvest;
+    private double z;
 
     public void FormularioDistribuciones() {
 
@@ -64,7 +65,7 @@ public class FormularioDistribuciones implements Serializable {
     }
 
     public void normal() {
-        listnorm = normalService.Distribucion(promedio, desvest);
+        listnorm = normalService.Distribucion(promedio, desvest,z);
     }
 
     public void poisson() {
@@ -158,5 +159,14 @@ public class FormularioDistribuciones implements Serializable {
     public void setDesvest(double desvest) {
         this.desvest = desvest;
     }
+
+    public double getZ() {
+        return z;
+    }
+
+    public void setZ(double Z) {
+        this.z = Z;
+    }
+    
 
 }

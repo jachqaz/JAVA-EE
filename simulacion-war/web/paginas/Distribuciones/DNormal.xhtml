@@ -4,17 +4,19 @@
     <ui:define name="content">
         <h:form>
             <h:panelGrid columns="2">
-                <p:outputLabel style="font-family: cursive">Valor Promedio</p:outputLabel>
-                <h:inputText id="N1" title="Numero 1" value="#{formD.promedio}" required="true" requiredMessage="Error: Numero 1 es requerido." maxlength="10"/>
-                <p:outputLabel style="font-family: cursive">Valor Desviacion Estandar</p:outputLabel>
-                <h:inputText id="N2" value="#{formD.desvest}" title="Numero 2" required="true" requiredMessage="Error: Numero 2 es requerido." maxlength="10">
-                    <f:validateLongRange minimum="0" maximum="1"/>
+                <p:outputLabel style="font-family: cursive">Valor Z</p:outputLabel>
+                <h:inputText id="N1" title="Numero 1" value="#{formD.z}" required="true" requiredMessage="Error: Numero 1 es requerido." maxlength="10">
+                    <f:validateLongRange minimum="-4" maximum="4"/>
                 </h:inputText>
+                <p:outputLabel style="font-family: cursive">Valor Promedio</p:outputLabel>
+                <h:inputText id="N2" title="Numero 2" value="#{formD.promedio}" required="true" requiredMessage="Error: Numero 2 es requerido." maxlength="10"/>
+                <p:outputLabel style="font-family: cursive">Valor Desviacion Estandar</p:outputLabel>
+                <h:inputText id="N3" value="#{formD.desvest}" title="Numero 3" required="true" requiredMessage="Error: Numero 3 es requerido." maxlength="10"> </h:inputText>
             </h:panelGrid>
             <h:commandButton id="submit" value="Enviar" actionListener="#{formD.normal()}">
-                <f:ajax execute="@this N1 N2" render="resultado errors1" onevent="msg"/>
+                <f:ajax execute="@this N1 N2 N3" render="resultado errors1" onevent="msg"/>
             </h:commandButton>
-            <h:message id="errors1" showSummary="true" showDetail="false" style="color: #d20005; font-family: 'New Century Schoolbook', serif; font-style: oblique; text-decoration: overline" for="N2"/>
+            <h:message id="errors1" showSummary="true" showDetail="false" style="color: #d20005; font-family: 'New Century Schoolbook', serif; font-style: oblique; text-decoration: overline" for="N1"/>
             <p:growl id="growl" life="2000"/>
             <p:dataTable id="resultado" var="distribucion" value="#{formD.listnorm}" paginatorAlwaysVisible="true" paginator="true" rows="10">
                 <p:column headerText="X">

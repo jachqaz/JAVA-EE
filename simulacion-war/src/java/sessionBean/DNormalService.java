@@ -32,13 +32,13 @@ public class DNormalService implements Serializable {
     public DNormalService() {
     }
 
-    public List<Distribucion> Distribucion(double promedio, double desvest) {
+    public List<Distribucion> Distribucion(double promedio, double desvest, double z) {
         List<Distribucion> list=new ArrayList<>();
         NormalDistribution nd = new NormalDistribution(promedio, desvest);
         DecimalFormat df = new DecimalFormat("0.000000");
-        for (int X = 0; X <= promedio; X++) {
-            list.add(new Distribucion(X+"", df.format(nd.probability(X)), df.format(nd.cumulativeProbability(X))));
-        }   
+        for (double i = -(z); i <= z; i++) {
+            list.add(new Distribucion(i + "","", df.format(nd.cumulativeProbability(i))));
+        }
         return list;
     }
 

@@ -9,18 +9,17 @@
 
     <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="2">
             <p:outputLabel style="font-family: cursive">Valor N </p:outputLabel>
             <h:inputText id="N1"
                          title="Numero 1"
-                         value="#{formD.n}"
+                         value="#{formBin.n}"
                          required="true"
                          requiredMessage="Error: Numero 1 es requerido."
                          maxlength="10" /> 
-            
+            <p></p>
             <p:outputLabel style="font-family: cursive">Valor P </p:outputLabel>
             <h:inputText id="N2"
-                         value="#{formD.p}"
+                         value="#{formBin.p}"
                          title="Numero 2"
                          required="true"
                          requiredMessage="Error: Numero 2 es requerido."
@@ -28,10 +27,11 @@
                 <f:validateLongRange minimum="0"
                                      maximum="1"/>
             </h:inputText>
-            </h:panelGrid>
-            <h:commandButton id="submit" value="Enviar" actionListener="#{formD.binomial()}">
+            <h:commandButton id="submit" value="Enviar" actionListener="#{formBin.init()}">
                 <f:ajax execute="@this N1 N2" render="resultado errors1" onevent="msg"/>
             </h:commandButton>
+
+            <p></p>
                 <h:message id="errors1" showSummary="true" showDetail="false"
                            style="color: #d20005;
                            font-family: 'New Century Schoolbook', serif;
@@ -39,17 +39,17 @@
                            text-decoration: overline"
                            for="N2"/>
             <p:growl id="growl" life="2000" />
-            <p:dataTable id="resultado" var="distribucion" value="#{formD.listbinomial}" paginatorAlwaysVisible="true" paginator="true" rows="10">
+            <p:dataTable id="resultado" var="binomial" value="#{formBin.listbinomial}" paginatorAlwaysVisible="true" paginator="true" rows="10">
                 <p:column headerText="X">
-                    <h:outputText value="#{distribucion.x}" />
+                    <h:outputText value="#{binomial.x}" />
                 </p:column>
 
                 <p:column headerText="fx">
-                    <h:outputText value="#{distribucion.fx}" />
+                    <h:outputText value="#{binomial.fx}" />
                 </p:column>
 
                 <p:column headerText="FX">
-                    <h:outputText value="#{distribucion.FX}" />
+                    <h:outputText value="#{binomial.FX}" />
                 </p:column>
 
             </p:dataTable>

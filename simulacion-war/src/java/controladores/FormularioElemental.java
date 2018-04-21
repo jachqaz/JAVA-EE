@@ -15,17 +15,12 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-<<<<<<< HEAD
 import modelo.Distribucion;
 import modelo.Car;
 import modelo.Carro;
 import sessionBean.DBinomailService;
-=======
-import modelo.Binomial;
 import modelo.Car;
 import modelo.Carro;
-import sessionBean.BinomailService;
->>>>>>> 42886b7cbacf11db858959ac445f70a51f844ff3
 import sessionBean.CarService;
 
 /**

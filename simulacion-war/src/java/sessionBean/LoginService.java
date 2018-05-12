@@ -5,6 +5,8 @@
  */
 package sessionBean;
 
+import controladoresUser.UserController;
+import entidad.user.User;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -32,7 +34,9 @@ public class LoginService implements Serializable {
     }
 
     public boolean Login(String email, String password) {
-   
+        UserController controller =new UserController();
+        List<User> list=controller.getItems();
+        list.get(0);
         return false;
     }
 

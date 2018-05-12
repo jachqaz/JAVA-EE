@@ -10,7 +10,36 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        <h:button value="index" outcome="faces/index"/>
+        <ui:composition template="newTemplate.xhtml">
+            <ui:define name="content">
+<h:form>
+            <h:panelGrid columns="2">
+            <p:outputLabel style="font-family: cursive">Email</p:outputLabel>
+            <h:inputText id="Email"
+                         title="Email"
+                         value=""
+                         required="true"
+                         requiredMessage="Error: Email es requerido."
+                         maxlength="10" /> 
+            
+            <p:outputLabel style="font-family: cursive">Password</p:outputLabel>
+            <h:inputText id="Password"
+                         value=""
+                         title="Password"
+                         required="true"
+                         requiredMessage="Error: Password es requerido."
+                         maxlength="10" >
+            </h:inputText>
+            </h:panelGrid>
+    <h:button value="index" outcome="faces/index"/>
+    </h:form>
+                
+            </ui:define>
+            <ui:define name="top"/>
+            <ui:define name="left"/>
+
+        </ui:composition>
+        
     </h:body>
 </html>
 

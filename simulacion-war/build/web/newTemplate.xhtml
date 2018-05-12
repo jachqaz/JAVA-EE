@@ -39,7 +39,6 @@
                             <p:menuitem value="Quit" url="#" />
                         </p:submenu>
                             <p:submenu label="Base de Datos(Sample)" icon="ui-icon-refresh">
-                                        <p:menuitem value="Show All User Items" outcome="/paginas/User/user/List.xhtml" />
                                 <p:menuitem value="Customer" outcome="/paginas/BaseDatos/customer/List.xhtml" />
                                 <p:menuitem value="DiscountCode" outcome="/paginas/BaseDatos/discountCode/List.xhtml" />
                                 <p:menuitem value="Manufacturer" outcome="/paginas/BaseDatos/manufacturer/List.xhtml" />
@@ -77,7 +76,7 @@
 
                             <f:facet name="options">
                                 <p:inputText style="margin-right:10px" placeholder="Search"/>
-                                <p:button outcome="faces/login" value="Logout" icon="ui-icon-extlink"  />
+                                <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
                             </f:facet>
                     </p:menubar>
                 </h:form>

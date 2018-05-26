@@ -23,13 +23,13 @@
                          maxlength="10" /> 
             
             <p:outputLabel style="font-family: cursive">Password</p:outputLabel>
-            <h:inputText id="password"
+            <h:inputSecret id="password"
                          value="#{formL.password}"
                          title="Password"
                          required="true"
                          requiredMessage="Error: Password es requerido."
                          maxlength="10" >
-            </h:inputText>
+            </h:inputSecret>
             </h:panelGrid>
     <h:commandButton action="#{formL.login()}"
 			value="Login">

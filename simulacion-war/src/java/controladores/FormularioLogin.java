@@ -8,8 +8,12 @@ package controladores;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 import sessionBean.LoginService;
 
 /**
@@ -26,6 +30,7 @@ public class FormularioLogin implements Serializable {
     private LoginService loginService;
     private String email;
     private String password;
+    private final Conection conection = new Conection();
 
     public void FormularioLogin() {
 
@@ -35,17 +40,28 @@ public class FormularioLogin implements Serializable {
     public void construct() {
     }
 
-   public void login(){
-       loginService.Login(email, password);
+   public String login(){
+       if (conection.loginControl(email, password)) {
+            HttpSession session = getSession();
+            session.setAttribute("email", email);
+            return "index";
+        } else {
+            RequestContext.getCurrentInstance().update("growl");
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña Invalidos", "Error de acceso"));
+            /**/
+            FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Usuario o contraseña Invalidos",
+							"Por favor ingrese un usuario o contraseña validos"));
+                        email = "";
+                        password = ""; 
+			return "/login?faces-redirect=true";
+        }
    }
 
-    public LoginService getLoginService() {
-        return loginService;
-    }
 
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
 
     public String getEmail() {
         return email;
@@ -62,6 +78,26 @@ public class FormularioLogin implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-
+    public static HttpSession getSession() {
+		return (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+	}
+public String logout() {
+		HttpSession session = getSession();
+                
+                email = "";
+                password = "";           
+		session.invalidate();
+                /*FacesContext facesContext = FacesContext.getCurrentInstance();
+                // define the navigation rule that must be used in order to redirect the user to the adequate page...
+                NavigationHandler myNav = facesContext.getApplication().getNavigationHandler();
+                myNav.handleNavigation(facesContext, null, "/login?faces-redirect=true");*/
+                FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN,
+							"Sesion Terminada",
+							"Ingrese nuevamente"));
+		return "/login?faces-redirect=true";
+               
+	}
 }
